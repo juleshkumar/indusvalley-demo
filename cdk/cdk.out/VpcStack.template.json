@@ -1,0 +1,434 @@
+{
+ "Resources": {
+  "DemoVpcConstructVpcF383D763": {
+   "Type": "AWS::EC2::VPC",
+   "Properties": {
+    "CidrBlock": "10.0.0.0/16",
+    "EnableDnsHostnames": true,
+    "EnableDnsSupport": true,
+    "Tags": [
+     {
+      "Key": "environment",
+      "Value": "uat"
+     },
+     {
+      "Key": "Name",
+      "Value": "DemoVpcConstruct-vpc"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "VpcStack/DemoVpcConstruct/Vpc"
+   }
+  },
+  "DemoVpcConstructPublicSubnet14362850B": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "ap-south-1a",
+    "CidrBlock": "10.0.1.0/24",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "PublicSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "DemoVpcConstructVpcF383D763"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "VpcStack/DemoVpcConstruct/PublicSubnet1"
+   }
+  },
+  "DemoVpcConstructPublicSubnet2E91184D5": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "ap-south-1b",
+    "CidrBlock": "10.0.2.0/24",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "PublicSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "DemoVpcConstructVpcF383D763"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "VpcStack/DemoVpcConstruct/PublicSubnet2"
+   }
+  },
+  "DemoVpcConstructPrivateAppSubnet175D92160": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "ap-south-1a",
+    "CidrBlock": "10.0.3.0/24",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "PrivateAppSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "DemoVpcConstructVpcF383D763"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "VpcStack/DemoVpcConstruct/PrivateAppSubnet1"
+   }
+  },
+  "DemoVpcConstructPrivateAppSubnet268F3F608": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "ap-south-1b",
+    "CidrBlock": "10.0.4.0/24",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "PrivateAppSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "DemoVpcConstructVpcF383D763"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "VpcStack/DemoVpcConstruct/PrivateAppSubnet2"
+   }
+  },
+  "DemoVpcConstructDBSubnet1F861E0BC": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "ap-south-1a",
+    "CidrBlock": "10.0.5.0/24",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "DBSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "DemoVpcConstructVpcF383D763"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "VpcStack/DemoVpcConstruct/DBSubnet1"
+   }
+  },
+  "DemoVpcConstructDBSubnet2BB9586E6": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "ap-south-1b",
+    "CidrBlock": "10.0.6.0/24",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "DBSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "DemoVpcConstructVpcF383D763"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "VpcStack/DemoVpcConstruct/DBSubnet2"
+   }
+  },
+  "DemoVpcConstructInternetGateway9104BF02": {
+   "Type": "AWS::EC2::InternetGateway",
+   "Metadata": {
+    "aws:cdk:path": "VpcStack/DemoVpcConstruct/InternetGateway"
+   }
+  },
+  "DemoVpcConstructIGWAttachmentF18371E1": {
+   "Type": "AWS::EC2::VPCGatewayAttachment",
+   "Properties": {
+    "InternetGatewayId": {
+     "Ref": "DemoVpcConstructInternetGateway9104BF02"
+    },
+    "VpcId": {
+     "Ref": "DemoVpcConstructVpcF383D763"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "VpcStack/DemoVpcConstruct/IGWAttachment"
+   }
+  },
+  "DemoVpcConstructNatGatewayEIPD8FB391D": {
+   "Type": "AWS::EC2::EIP",
+   "Properties": {
+    "Domain": "vpc"
+   },
+   "Metadata": {
+    "aws:cdk:path": "VpcStack/DemoVpcConstruct/NatGatewayEIP"
+   }
+  },
+  "DemoVpcConstructNatGateway22E38993": {
+   "Type": "AWS::EC2::NatGateway",
+   "Properties": {
+    "AllocationId": {
+     "Fn::GetAtt": [
+      "DemoVpcConstructNatGatewayEIPD8FB391D",
+      "AllocationId"
+     ]
+    },
+    "SubnetId": {
+     "Ref": "DemoVpcConstructPublicSubnet14362850B"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "VpcStack/DemoVpcConstruct/NatGateway"
+   }
+  },
+  "DemoVpcConstructPublicRouteTable4A846B34": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "PublicRouteTable"
+     }
+    ],
+    "VpcId": {
+     "Ref": "DemoVpcConstructVpcF383D763"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "VpcStack/DemoVpcConstruct/PublicRouteTable"
+   }
+  },
+  "DemoVpcConstructPublicRoute9F4D76CF": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "DemoVpcConstructInternetGateway9104BF02"
+    },
+    "RouteTableId": {
+     "Ref": "DemoVpcConstructPublicRouteTable4A846B34"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "VpcStack/DemoVpcConstruct/PublicRoute"
+   }
+  },
+  "DemoVpcConstructPublicSubnet1RouteAssociationACA9C575": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "DemoVpcConstructPublicRouteTable4A846B34"
+    },
+    "SubnetId": {
+     "Ref": "DemoVpcConstructPublicSubnet14362850B"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "VpcStack/DemoVpcConstruct/PublicSubnet1RouteAssociation"
+   }
+  },
+  "DemoVpcConstructPublicSubnet2RouteAssociation923DD103": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "DemoVpcConstructPublicRouteTable4A846B34"
+    },
+    "SubnetId": {
+     "Ref": "DemoVpcConstructPublicSubnet2E91184D5"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "VpcStack/DemoVpcConstruct/PublicSubnet2RouteAssociation"
+   }
+  },
+  "DemoVpcConstructPrivateRouteTable91AECB6E": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "PrivateRouteTable"
+     }
+    ],
+    "VpcId": {
+     "Ref": "DemoVpcConstructVpcF383D763"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "VpcStack/DemoVpcConstruct/PrivateRouteTable"
+   }
+  },
+  "DemoVpcConstructPrivateRoute900B29E0": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "NatGatewayId": {
+     "Ref": "DemoVpcConstructNatGateway22E38993"
+    },
+    "RouteTableId": {
+     "Ref": "DemoVpcConstructPrivateRouteTable91AECB6E"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "VpcStack/DemoVpcConstruct/PrivateRoute"
+   }
+  },
+  "DemoVpcConstructPrivateAppSubnet1RouteAssociation3D2C17D1": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "DemoVpcConstructPrivateRouteTable91AECB6E"
+    },
+    "SubnetId": {
+     "Ref": "DemoVpcConstructPrivateAppSubnet175D92160"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "VpcStack/DemoVpcConstruct/PrivateAppSubnet1RouteAssociation"
+   }
+  },
+  "DemoVpcConstructPrivateAppSubnet2RouteAssociation19EC2005": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "DemoVpcConstructPrivateRouteTable91AECB6E"
+    },
+    "SubnetId": {
+     "Ref": "DemoVpcConstructPrivateAppSubnet268F3F608"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "VpcStack/DemoVpcConstruct/PrivateAppSubnet2RouteAssociation"
+   }
+  },
+  "DemoVpcConstructDBSubnet1RouteAssociation250CEE31": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "DemoVpcConstructPrivateRouteTable91AECB6E"
+    },
+    "SubnetId": {
+     "Ref": "DemoVpcConstructDBSubnet1F861E0BC"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "VpcStack/DemoVpcConstruct/DBSubnet1RouteAssociation"
+   }
+  },
+  "DemoVpcConstructDBSubnet2RouteAssociation59F0FBCD": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "DemoVpcConstructPrivateRouteTable91AECB6E"
+    },
+    "SubnetId": {
+     "Ref": "DemoVpcConstructDBSubnet2BB9586E6"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "VpcStack/DemoVpcConstruct/DBSubnet2RouteAssociation"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/02NwQqCQBRFv8X9OKVt3IpEuCnRaBvP6YmT+iacN4iI/x5mZKt7L+fADWUQBTLwYLC+ejR+q0s5FQyqETDYO6pQTklFtywRSUWFKwl5aSkx9oR8AsYBRrE63xUzg6o7pI96TLMlzvAv58YxXqFs8be2gw3G1hqlgbWheeEXxy/Hs8hGrg3tDjKSwd57Wq393hHrDmW+5hssnrQF2QAAAA=="
+   },
+   "Metadata": {
+    "aws:cdk:path": "VpcStack/CDKMetadata/Default"
+   }
+  }
+ },
+ "Outputs": {
+  "DemoVpcConstructVpcId3882E8CE": {
+   "Value": {
+    "Ref": "DemoVpcConstructVpcF383D763"
+   },
+   "Export": {
+    "Name": "DemoVpcConstruct-VPCID"
+   }
+  },
+  "DemoVpcConstructPublicSubnet1Output8809E5BC": {
+   "Value": {
+    "Ref": "DemoVpcConstructPublicSubnet14362850B"
+   },
+   "Export": {
+    "Name": "DemoVpcConstruct-PublicSubnet1"
+   }
+  },
+  "DemoVpcConstructPublicSubnet2OutputBA94ADFC": {
+   "Value": {
+    "Ref": "DemoVpcConstructPublicSubnet2E91184D5"
+   },
+   "Export": {
+    "Name": "DemoVpcConstruct-PublicSubnet2"
+   }
+  },
+  "DemoVpcConstructPrivateAppSubnet1OutputF5532F78": {
+   "Value": {
+    "Ref": "DemoVpcConstructPrivateAppSubnet175D92160"
+   },
+   "Export": {
+    "Name": "DemoVpcConstruct-PrivateAppSubnet1"
+   }
+  },
+  "DemoVpcConstructPrivateAppSubnet2Output3C03BC8B": {
+   "Value": {
+    "Ref": "DemoVpcConstructPrivateAppSubnet268F3F608"
+   },
+   "Export": {
+    "Name": "DemoVpcConstruct-PrivateAppSubnet2"
+   }
+  },
+  "DemoVpcConstructDBSubnet1Output962DBE29": {
+   "Value": {
+    "Ref": "DemoVpcConstructDBSubnet1F861E0BC"
+   },
+   "Export": {
+    "Name": "DemoVpcConstruct-DBSubnet1"
+   }
+  },
+  "DemoVpcConstructDBSubnet2Output873C4A76": {
+   "Value": {
+    "Ref": "DemoVpcConstructDBSubnet2BB9586E6"
+   },
+   "Export": {
+    "Name": "DemoVpcConstruct-DBSubnet2"
+   }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}

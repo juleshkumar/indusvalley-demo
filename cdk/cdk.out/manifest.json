@@ -1,0 +1,465 @@
+{
+  "version": "39.0.0",
+  "artifacts": {
+    "VpcStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "VpcStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "VpcStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://423623866361/ap-south-1",
+      "properties": {
+        "templateFile": "VpcStack.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::423623866361:role/cdk-hnb659fds-deploy-role-423623866361-ap-south-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::423623866361:role/cdk-hnb659fds-cfn-exec-role-423623866361-ap-south-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-423623866361-ap-south-1/116d76a085464ab56609e339c31b1831c1761ead6c901a0ff6bb4a15221b71e0.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "VpcStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::423623866361:role/cdk-hnb659fds-lookup-role-423623866361-ap-south-1",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "VpcStack.assets"
+      ],
+      "metadata": {
+        "/VpcStack/DemoVpcConstruct/Vpc": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DemoVpcConstructVpcF383D763"
+          }
+        ],
+        "/VpcStack/DemoVpcConstruct/PublicSubnet1": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DemoVpcConstructPublicSubnet14362850B"
+          }
+        ],
+        "/VpcStack/DemoVpcConstruct/PublicSubnet2": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DemoVpcConstructPublicSubnet2E91184D5"
+          }
+        ],
+        "/VpcStack/DemoVpcConstruct/PrivateAppSubnet1": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DemoVpcConstructPrivateAppSubnet175D92160"
+          }
+        ],
+        "/VpcStack/DemoVpcConstruct/PrivateAppSubnet2": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DemoVpcConstructPrivateAppSubnet268F3F608"
+          }
+        ],
+        "/VpcStack/DemoVpcConstruct/DBSubnet1": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DemoVpcConstructDBSubnet1F861E0BC"
+          }
+        ],
+        "/VpcStack/DemoVpcConstruct/DBSubnet2": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DemoVpcConstructDBSubnet2BB9586E6"
+          }
+        ],
+        "/VpcStack/DemoVpcConstruct/InternetGateway": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DemoVpcConstructInternetGateway9104BF02"
+          }
+        ],
+        "/VpcStack/DemoVpcConstruct/IGWAttachment": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DemoVpcConstructIGWAttachmentF18371E1"
+          }
+        ],
+        "/VpcStack/DemoVpcConstruct/NatGatewayEIP": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DemoVpcConstructNatGatewayEIPD8FB391D"
+          }
+        ],
+        "/VpcStack/DemoVpcConstruct/NatGateway": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DemoVpcConstructNatGateway22E38993"
+          }
+        ],
+        "/VpcStack/DemoVpcConstruct/PublicRouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DemoVpcConstructPublicRouteTable4A846B34"
+          }
+        ],
+        "/VpcStack/DemoVpcConstruct/PublicRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DemoVpcConstructPublicRoute9F4D76CF"
+          }
+        ],
+        "/VpcStack/DemoVpcConstruct/PublicSubnet1RouteAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DemoVpcConstructPublicSubnet1RouteAssociationACA9C575"
+          }
+        ],
+        "/VpcStack/DemoVpcConstruct/PublicSubnet2RouteAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DemoVpcConstructPublicSubnet2RouteAssociation923DD103"
+          }
+        ],
+        "/VpcStack/DemoVpcConstruct/PrivateRouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DemoVpcConstructPrivateRouteTable91AECB6E"
+          }
+        ],
+        "/VpcStack/DemoVpcConstruct/PrivateRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DemoVpcConstructPrivateRoute900B29E0"
+          }
+        ],
+        "/VpcStack/DemoVpcConstruct/PrivateAppSubnet1RouteAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DemoVpcConstructPrivateAppSubnet1RouteAssociation3D2C17D1"
+          }
+        ],
+        "/VpcStack/DemoVpcConstruct/PrivateAppSubnet2RouteAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DemoVpcConstructPrivateAppSubnet2RouteAssociation19EC2005"
+          }
+        ],
+        "/VpcStack/DemoVpcConstruct/DBSubnet1RouteAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DemoVpcConstructDBSubnet1RouteAssociation250CEE31"
+          }
+        ],
+        "/VpcStack/DemoVpcConstruct/DBSubnet2RouteAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DemoVpcConstructDBSubnet2RouteAssociation59F0FBCD"
+          }
+        ],
+        "/VpcStack/DemoVpcConstruct/VpcId": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DemoVpcConstructVpcId3882E8CE"
+          }
+        ],
+        "/VpcStack/DemoVpcConstruct/PublicSubnet1Output": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DemoVpcConstructPublicSubnet1Output8809E5BC"
+          }
+        ],
+        "/VpcStack/DemoVpcConstruct/PublicSubnet2Output": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DemoVpcConstructPublicSubnet2OutputBA94ADFC"
+          }
+        ],
+        "/VpcStack/DemoVpcConstruct/PrivateAppSubnet1Output": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DemoVpcConstructPrivateAppSubnet1OutputF5532F78"
+          }
+        ],
+        "/VpcStack/DemoVpcConstruct/PrivateAppSubnet2Output": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DemoVpcConstructPrivateAppSubnet2Output3C03BC8B"
+          }
+        ],
+        "/VpcStack/DemoVpcConstruct/DBSubnet1Output": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DemoVpcConstructDBSubnet1Output962DBE29"
+          }
+        ],
+        "/VpcStack/DemoVpcConstruct/DBSubnet2Output": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DemoVpcConstructDBSubnet2Output873C4A76"
+          }
+        ],
+        "/VpcStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/VpcStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/VpcStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "VpcStack"
+    },
+    "EC2Stack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "EC2Stack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "EC2Stack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://423623866361/ap-south-1",
+      "properties": {
+        "templateFile": "EC2Stack.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::423623866361:role/cdk-hnb659fds-deploy-role-423623866361-ap-south-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::423623866361:role/cdk-hnb659fds-cfn-exec-role-423623866361-ap-south-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-423623866361-ap-south-1/21a3e692e86e32f771182b0719586e8490b1f663c640e380c5ba9037e59efa92.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "EC2Stack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::423623866361:role/cdk-hnb659fds-lookup-role-423623866361-ap-south-1",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "EC2Stack.assets"
+      ],
+      "metadata": {
+        "/EC2Stack/DemoEC2Construct/VPC": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": "*"
+          }
+        ],
+        "/EC2Stack/DemoEC2Construct/VPC/PublicSubnet1": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": "*"
+          },
+          {
+            "type": "aws:cdk:warning",
+            "data": "No routeTableId was provided to the subnet at 'EC2Stack/DemoEC2Construct/VPC/PublicSubnet1'. Attempting to read its .routeTable.routeTableId will return null/undefined. (More info: https://github.com/aws/aws-cdk/pull/3171) [ack: @aws-cdk/aws-ec2:noSubnetRouteTableId]",
+            "trace": [
+              "Annotations.addMessage (/tmp/jsii-kernel-6l7KjG/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1608)",
+              "Annotations.addWarningV2 (/tmp/jsii-kernel-6l7KjG/node_modules/aws-cdk-lib/core/lib/annotations.js:1:825)",
+              "new ImportedSubnet (/tmp/jsii-kernel-6l7KjG/node_modules/aws-cdk-lib/aws-ec2/lib/vpc.js:1:36582)",
+              "Subnet.fromSubnetAttributes (/tmp/jsii-kernel-6l7KjG/node_modules/aws-cdk-lib/aws-ec2/lib/vpc.js:1:23390)",
+              "/tmp/jsii-kernel-6l7KjG/node_modules/aws-cdk-lib/aws-ec2/lib/util.js:1:2154",
+              "Array.map (<anonymous>)",
+              "ImportSubnetGroup.import (/tmp/jsii-kernel-6l7KjG/node_modules/aws-cdk-lib/aws-ec2/lib/util.js:1:2072)",
+              "new ImportedVpc (/tmp/jsii-kernel-6l7KjG/node_modules/aws-cdk-lib/aws-ec2/lib/vpc.js:1:33530)",
+              "Vpc.fromVpcAttributes (/tmp/jsii-kernel-6l7KjG/node_modules/aws-cdk-lib/aws-ec2/lib/vpc.js:1:8792)",
+              "/tmp/tmp1t7p2m_s/lib/program.js:14555:152",
+              "Kernel._Kernel_ensureSync (/tmp/tmp1t7p2m_s/lib/program.js:15160:24)",
+              "Kernel.sinvoke (/tmp/tmp1t7p2m_s/lib/program.js:14555:102)",
+              "KernelHost.processRequest (/tmp/tmp1t7p2m_s/lib/program.js:16378:36)",
+              "KernelHost.run (/tmp/tmp1t7p2m_s/lib/program.js:16338:22)",
+              "Immediate._onImmediate (/tmp/tmp1t7p2m_s/lib/program.js:16339:46)",
+              "process.processImmediate (node:internal/timers:476:21)"
+            ]
+          }
+        ],
+        "/EC2Stack/DemoEC2Construct/EC2ServerSecurityGroup": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "vpc": "*",
+              "allowAllOutbound": true,
+              "description": "*",
+              "securityGroupName": "*"
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "addIngressRule": [
+                {
+                  "canInlineRule": true,
+                  "connections": "*",
+                  "uniqueId": "*"
+                },
+                {},
+                "*",
+                "*"
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "addIngressRule": [
+                {
+                  "canInlineRule": true,
+                  "connections": "*",
+                  "uniqueId": "*"
+                },
+                {},
+                "*",
+                "*"
+              ]
+            }
+          }
+        ],
+        "/EC2Stack/DemoEC2Construct/EC2ServerSecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DemoEC2ConstructEC2ServerSecurityGroup6E4879FA"
+          }
+        ],
+        "/EC2Stack/DemoEC2Construct/SSMRole": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "assumedBy": {
+                "principalAccount": "*",
+                "assumeRoleAction": "*"
+              },
+              "description": "*"
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "addManagedPolicy": [
+                {
+                  "managedPolicyArn": "*"
+                }
+              ]
+            }
+          }
+        ],
+        "/EC2Stack/DemoEC2Construct/SSMRole/ImportSSMRole": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": "*"
+          }
+        ],
+        "/EC2Stack/DemoEC2Construct/SSMRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DemoEC2ConstructSSMRole6C532B53"
+          }
+        ],
+        "/EC2Stack/DemoEC2Construct/InstanceProfile": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "instanceProfileName": "*",
+              "role": "*"
+            }
+          }
+        ],
+        "/EC2Stack/DemoEC2Construct/InstanceProfile/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DemoEC2ConstructInstanceProfileEF27B31E"
+          }
+        ],
+        "/EC2Stack/DemoEC2Construct/EC2Instance": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "instanceType": "*",
+              "machineImage": "*",
+              "vpc": "*",
+              "blockDevices": [
+                {
+                  "deviceName": "*",
+                  "volume": "*"
+                }
+              ],
+              "instanceProfile": "*",
+              "keyName": "*",
+              "securityGroup": "*",
+              "vpcSubnets": {
+                "subnets": [
+                  "*"
+                ]
+              }
+            }
+          }
+        ],
+        "/EC2Stack/DemoEC2Construct/EC2Instance/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DemoEC2ConstructEC2Instance0FA515CD"
+          }
+        ],
+        "/EC2Stack/DemoEC2Construct/InstanceId": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DemoEC2ConstructInstanceIdDE9DF950"
+          }
+        ],
+        "/EC2Stack/DemoEC2Construct/SecurityGroupId": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DemoEC2ConstructSecurityGroupId454D6C7D"
+          }
+        ],
+        "/EC2Stack/DemoEC2Construct/InstanceProfileArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DemoEC2ConstructInstanceProfileArn45C20FA5"
+          }
+        ],
+        "/EC2Stack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/EC2Stack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/EC2Stack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "EC2Stack"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  }
+}

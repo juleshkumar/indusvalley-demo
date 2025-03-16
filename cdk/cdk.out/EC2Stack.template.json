@@ -1,0 +1,263 @@
+{
+ "Resources": {
+  "DemoEC2ConstructEC2ServerSecurityGroup6E4879FA": {
+   "Type": "AWS::EC2::SecurityGroup",
+   "Properties": {
+    "GroupDescription": "EC2 Server Security Group",
+    "GroupName": "demo-ec2-sg",
+    "SecurityGroupEgress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow all outbound traffic by default",
+      "IpProtocol": "-1"
+     }
+    ],
+    "SecurityGroupIngress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow SSH access from anywhere",
+      "FromPort": 22,
+      "IpProtocol": "tcp",
+      "ToPort": 22
+     },
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow HTTP access from anywhere",
+      "FromPort": 80,
+      "IpProtocol": "tcp",
+      "ToPort": 80
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "appname",
+      "Value": "demo"
+     },
+     {
+      "Key": "environment",
+      "Value": "UAT"
+     },
+     {
+      "Key": "Name",
+      "Value": "demo-ec2-sg"
+     },
+     {
+      "Key": "remarks",
+      "Value": "demo-client"
+     }
+    ],
+    "VpcId": {
+     "Fn::ImportValue": "DemoVpcConstruct-VPCID"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "EC2Stack/DemoEC2Construct/EC2ServerSecurityGroup/Resource"
+   }
+  },
+  "DemoEC2ConstructSSMRole6C532B53": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "ec2.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Description": "Role for EC2 instance to access AWS Systems Manager",
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/AmazonSSMFullAccess"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "EC2Stack/DemoEC2Construct/SSMRole/Resource"
+   }
+  },
+  "DemoEC2ConstructInstanceProfileEF27B31E": {
+   "Type": "AWS::IAM::InstanceProfile",
+   "Properties": {
+    "InstanceProfileName": {
+     "Fn::Join": [
+      "",
+      [
+       {
+        "Ref": "DemoEC2ConstructSSMRole6C532B53"
+       },
+       "-InstanceProfile"
+      ]
+     ]
+    },
+    "Roles": [
+     {
+      "Ref": "DemoEC2ConstructSSMRole6C532B53"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "EC2Stack/DemoEC2Construct/InstanceProfile/Resource"
+   }
+  },
+  "DemoEC2ConstructEC2Instance0FA515CD": {
+   "Type": "AWS::EC2::Instance",
+   "Properties": {
+    "AvailabilityZone": "ap-south-1a",
+    "BlockDeviceMappings": [
+     {
+      "DeviceName": "/dev/xvda",
+      "Ebs": {
+       "DeleteOnTermination": true,
+       "Encrypted": true,
+       "VolumeSize": 10,
+       "VolumeType": "gp3"
+      }
+     }
+    ],
+    "IamInstanceProfile": {
+     "Ref": "DemoEC2ConstructInstanceProfileEF27B31E"
+    },
+    "ImageId": "ami-0e91af172501f523f",
+    "InstanceType": "t2.micro",
+    "KeyName": "demo-keypair",
+    "SecurityGroupIds": [
+     {
+      "Fn::GetAtt": [
+       "DemoEC2ConstructEC2ServerSecurityGroup6E4879FA",
+       "GroupId"
+      ]
+     }
+    ],
+    "SubnetId": {
+     "Fn::ImportValue": "DemoVpcConstruct-PublicSubnet1"
+    },
+    "Tags": [
+     {
+      "Key": "appname",
+      "Value": "demo"
+     },
+     {
+      "Key": "cluster",
+      "Value": "NA"
+     },
+     {
+      "Key": "created_by",
+      "Value": "uipl"
+     },
+     {
+      "Key": "environment",
+      "Value": "UAT"
+     },
+     {
+      "Key": "Name",
+      "Value": "new-demo-ec2-test"
+     },
+     {
+      "Key": "role",
+      "Value": "uat-EC2Role"
+     },
+     {
+      "Key": "starttime",
+      "Value": "na"
+     },
+     {
+      "Key": "stoptime",
+      "Value": "na"
+     }
+    ],
+    "UserData": {
+     "Fn::Base64": "#!/bin/bash"
+    }
+   },
+   "DependsOn": [
+    "DemoEC2ConstructSSMRole6C532B53"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "EC2Stack/DemoEC2Construct/EC2Instance/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/7VSy27bMBD8lvBY0GqdXALf3AQodEhj2LkJRkEvN87G1FLlw4ZA6N8LyZSioOccCC4Gs0PO7N4Wy/tlsbxRF78AfVoYOhRpFxSc5Ba9jQ6wEt+EzGcv1cX/SQi3RdohREeh/eVsbKokzg2I1cBTxtjL2pjnGA42shar4CJKodGDoyaQ5cz0c43fqsYB72QSSuuSjw6930aDYlUlAYpLNsR4Ra6aYJkRekmfNSPT34ilHqW66fNfpruXD6/8KQ9Zsg+KAaskKJcvbYNZq1bwRoxlrY4j9BHfwVg4PeKZAP3wQT3UUzxSnK2JY1Z7OT2wcfaVzEg6YTtr+ZT0x5O7eGAMXqyS8GNZDZ6upkYbnSRVF2lrTe9IeR9r1D/bvq9xxECNMmsAGzmMSzBw+oY1TBPv/l+CPJQnxeqIemMNQTu4rufI2mV2DrvXnTLOvmdRZ2Tm31kzBTbzlYld14PPMTQxdHLThjfL3++K+2L54+bdEy1c5EA1Ftvr/Q8MD5KpNwMAAA=="
+   },
+   "Metadata": {
+    "aws:cdk:path": "EC2Stack/CDKMetadata/Default"
+   }
+  }
+ },
+ "Outputs": {
+  "DemoEC2ConstructInstanceIdDE9DF950": {
+   "Description": "Instance ID of the EC2 instance",
+   "Value": {
+    "Ref": "DemoEC2ConstructEC2Instance0FA515CD"
+   }
+  },
+  "DemoEC2ConstructSecurityGroupId454D6C7D": {
+   "Description": "Security Group ID of the EC2 instance",
+   "Value": {
+    "Fn::GetAtt": [
+     "DemoEC2ConstructEC2ServerSecurityGroup6E4879FA",
+     "GroupId"
+    ]
+   }
+  },
+  "DemoEC2ConstructInstanceProfileArn45C20FA5": {
+   "Description": "ARN of the instance profile",
+   "Value": {
+    "Fn::GetAtt": [
+     "DemoEC2ConstructInstanceProfileEF27B31E",
+     "Arn"
+    ]
+   }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}
