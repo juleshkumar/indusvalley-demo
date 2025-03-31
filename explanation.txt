@@ -1,3 +1,173 @@
+terraform/
+├── environments
+│   ├── dev
+│   │   ├── addon
+│   │   │   ├── main.tf
+│   │   │   ├── provider.tf
+│   │   │   └── variable.tf
+│   │   ├── dev.tfvars
+│   │   ├── ec2_linux
+│   │   │   ├── backend.tf
+│   │   │   ├── main.tf
+│   │   │   ├── outputs.tf
+│   │   │   ├── provider.tf
+│   │   │   └── variable.tf
+│   │   ├── ec2_mssql
+│   │   │   ├── backend.tf
+│   │   │   ├── main.tf
+│   │   │   ├── outputs.tf
+│   │   │   ├── provider.tf
+│   │   │   └── variable.tf
+│   │   ├── eks
+│   │   │   ├── backend.tf
+│   │   │   ├── main.tf
+│   │   │   ├── outputs.tf
+│   │   │   ├── provider.tf
+│   │   │   └── variables.tf
+│   │   ├── elasticache
+│   │   │   ├── backend.tf
+│   │   │   ├── main.tf
+│   │   │   ├── outputs.tf
+│   │   │   ├── provider.tf
+│   │   │   └── variables.tf
+│   │   ├── kms
+│   │   │   ├── backend.tf
+│   │   │   ├── main.tf
+│   │   │   ├── outputs.tf
+│   │   │   ├── provider.tf
+│   │   │   └── variables.tf
+│   │   ├── load_balancer
+│   │   │   ├── backend.tf
+│   │   │   ├── main.tf
+│   │   │   ├── outputs.tf
+│   │   │   ├── provider.tf
+│   │   │   └── variables.tf
+│   │   ├── nodegroups
+│   │   │   ├── backend.tf
+│   │   │   ├── main.tf
+│   │   │   ├── output.tf
+│   │   │   ├── provider.tf
+│   │   │   └── variable.tf
+│   │   ├── rds
+│   │   │   ├── backend.tf
+│   │   │   ├── main.tf
+│   │   │   ├── outputs.tf
+│   │   │   ├── provider.tf
+│   │   │   └── variables.tf
+│   │   ├── sg-new
+│   │   │   ├── main.tf
+│   │   │   ├── provider.tf
+│   │   │   └── variables.tf
+│   │   └── vpc
+│   │       ├── backend.tf
+│   │       ├── main.tf
+│   │       ├── outputs.tf
+│   │       ├── provider.tf
+│   │       └── variables.tf
+│   └── prod
+│       ├── addon
+│       │   ├── main.tf
+│       │   ├── provider.tf
+│       │   └── variable.tf
+│       ├── ec2_linux
+│       │   ├── backend.tf
+│       │   ├── main.tf
+│       │   ├── outputs.tf
+│       │   ├── provider.tf
+│       │   └── variable.tf
+│       ├── ec2_mssql
+│       │   ├── backend.tf
+│       │   ├── main.tf
+│       │   ├── outputs.tf
+│       │   ├── provider.tf
+│       │   └── variable.tf
+│       ├── eks
+│       │   ├── backend.tf
+│       │   ├── main.tf
+│       │   ├── outputs.tf
+│       │   ├── provider.tf
+│       │   └── variables.tf
+│       ├── elasticache
+│       │   ├── backend.tf
+│       │   ├── main.tf
+│       │   ├── outputs.tf
+│       │   ├── provider.tf
+│       │   └── variables.tf
+│       ├── kms
+│       │   ├── backend.tf
+│       │   ├── main.tf
+│       │   ├── outputs.tf
+│       │   ├── provider.tf
+│       │   └── variables.tf
+│       ├── load_balancer
+│       │   ├── backend.tf
+│       │   ├── main.tf
+│       │   ├── outputs.tf
+│       │   ├── provider.tf
+│       │   └── variables.tf
+│       ├── nodegroups
+│       │   ├── backend.tf
+│       │   ├── main.tf
+│       │   ├── output.tf
+│       │   ├── provider.tf
+│       │   └── variable.tf
+│       ├── prod.tfvars
+│       ├── rds
+│       │   ├── backend.tf
+│       │   ├── main.tf
+│       │   ├── outputs.tf
+│       │   ├── provider.tf
+│       │   └── variables.tf
+│       ├── sg-new
+│       │   ├── main.tf
+│       │   ├── provider.tf
+│       │   └── variables.tf
+│       └── vpc
+│           ├── backend.tf
+│           ├── main.tf
+│           ├── outputs.tf
+│           ├── provider.tf
+│           └── variables.tf
+└── modules
+    ├── ec2_linux
+    │   ├── main.tf
+    │   ├── outputs.tf
+    │   └── variables.tf
+    ├── ec2_mssql
+    │   ├── main.tf
+    │   ├── outputs.tf
+    │   └── variables.tf
+    ├── eks
+    │   ├── main.tf
+    │   ├── outputs.tf
+    │   └── variables.tf
+    ├── elasticache
+    │   ├── main.tf
+    │   ├── outputs.tf
+    │   └── variables.tf
+    ├── kms
+    │   ├── main.tf
+    │   ├── outputs.tf
+    │   └── variables.tf
+    ├── load_balancer
+    │   ├── main.tf
+    │   ├── outputs.tf
+    │   └── variables.tf
+    ├── nodegroup
+    │   ├── launch-template.tf
+    │   ├── main.tf
+    │   ├── output.tf
+    │   └── variable.tf
+    ├── rds
+    │   ├── main.tf
+    │   ├── outputs.tf
+    │   └── variables.tf
+    └── vpc
+        ├── main.tf
+        ├── outputs.tf
+        └── variables.tf
+
+
 1. Repository Structure and Environment Setup
 The complete skeleton of Terraform modules and environment configurations is uploaded to GitHub.
 
