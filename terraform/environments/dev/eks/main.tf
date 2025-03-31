@@ -1,0 +1,20 @@
+module "eks" {
+  source                         = "../../../modules/eks"
+  cloudwatch_logs                = var.cloudwatch_logs
+  #inst_key_pair                  = var.inst_key_pair
+  #inst_disk_size                 = var.inst_disk_size
+  #instance_capacity_types_decimal0 = var.instance_capacity_types_decimal0
+  #instance_capacity_types_decimal1   = var.instance_capacity_types_decimal1
+  #max-workers-decimal1             = var.max-workers-decimal1
+  #max-workers-decimal0               = var.max-workers-decimal0
+  cluster-autoscaler             = var.cluster-autoscaler
+  cluster-name                   = var.cluster-name
+  #num-workers-decimal1             = var.max-workers-decimal1
+  #num-workers-decimal0               = var.max-workers-decimal0
+  k8s_version                    = var.k8s_version
+  #public_key_file                = var.public_key_file
+  eks_tags = var.eks_tags
+  region                         = var.region
+  backend_bucket                 = var.backend_bucket
+  backend_path                   = var.backend_path
+}
