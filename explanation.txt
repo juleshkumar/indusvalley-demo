@@ -1,0 +1,58 @@
+1. Repository Structure and Environment Setup
+The complete skeleton of Terraform modules and environment configurations is uploaded to GitHub.
+
+The modules folder contains the core parent code, which should not be modified to maintain consistency and modularity.
+
+The env folder contains separate environment configurations for dev and prod, with environment-specific variables and backend configuration files.
+
+During deployment, the appropriate folder (dev or prod) should be selected based on the target environment.
+
+2. State Management and S3 Bucket Configuration
+A single S3 bucket is used to store the Terraform state files, with different folders/objects managing dev and prod states separately.
+
+This segregation prevents potential state file corruption or overwriting, ensuring that changes in one environment do not affect the other.
+
+If the same folder were used for both environments, it would result in modifying the previous state file, leading to configuration drift.
+
+3. Backend Configuration and Parameterization
+Currently, backend configuration variables are hardcoded.
+
+In the future, these backend variables can be parameterized to align with different deployment methods, enhancing flexibility.
+
+Apart from the backend, all other variables are fully parameterized to allow greater modularity and adaptability across environments.
+
+4. Testing and Parallel Deployment Plan
+Both environments (dev and prod) have been tested individually.
+
+Due to AWS free-tier limitations, simultaneous deployment of both environments could not be performed.
+
+Once customer AWS access is granted, parallel deployments will be conducted to identify and address any naming conflicts or variable dependencies.
+
+5. Command Execution Process
+
+Step 1: Navigate to the Required Resource Module
+
+cd <resource-name-folder>
+Each resource has its own module to allow individual modification and deployment.
+
+Access the desired resource folder before proceeding with initialization and deployment.
+
+Step 2: Initialize Terraform with Reconfiguration
+
+terraform init -reconfigure
+Initializes the Terraform configuration and installs necessary dependencies.
+
+The -reconfigure flag ensures that the backend configuration is reinitialized to avoid errors caused by switching between different S3 buckets.
+
+Step 3: Plan Deployment Using Environment Variables
+
+terraform plan --var-file=../prod.tfvars
+
+The --var-file option specifies the path to the environment-specific variable file (prod.tfvars or dev.tfvars).
+
+Since the common variable file is referenced, there is no need for manual input of variables. Unused variables will be ignored with a warning.
+
+Step 4: Apply and Deploy Resources
+
+terraform apply --var-file=../prod.tfvars
+Executes the deployment as defined in main.tf, using variables from the specified .tfvars file.
